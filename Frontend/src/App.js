@@ -1,10 +1,11 @@
 import Upload from "./artifacts/contracts/Upload.json";
 import { useState, useEffect } from "react";
-import { ethers } from "ethers";
 import FileUpload from "./components/FileUpload";
 import Display from "./components/Display";
 import Modal from "./components/Modal";
 import "./App.css";
+
+const ethers = require("ethers");
 
 function App() {
   const [account, setAccount] = useState("");
@@ -20,7 +21,7 @@ function App() {
           const signer = provider.getSigner();
           const address = await signer.getAddress();
           setAccount(address);
-          const contractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
+          const contractAddress = "0x998333ed612A1135411C7e982a5d425327Ef2c55";
 
           const contract = new ethers.Contract(
             contractAddress,
@@ -63,7 +64,7 @@ function App() {
       )}
 
       <div className="App">
-        <h1 style={{ color: "white" }}>Gdrive 3.0</h1>
+        <h1 style={{ color: "black" }}>Smooth as Buffer</h1>
         <div className="bg"></div>
         <div className="bg bg2"></div>
         <div className="bg bg3"></div>

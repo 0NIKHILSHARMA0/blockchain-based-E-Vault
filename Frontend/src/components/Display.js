@@ -36,7 +36,7 @@ const Display = ({ contract, account }) => {
       ));
       setData(images);
     } else {
-      alert("No image to display");
+      alert("No File to display");
     }
   };
 

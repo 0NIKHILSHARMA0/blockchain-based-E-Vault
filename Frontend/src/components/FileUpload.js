@@ -1,9 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
 import "./FileUpload.css";
+
 const FileUpload = ({ contract, account, provider }) => {
   const [file, setFile] = useState(null);
-  const [fileName, setFileName] = useState("No image selected");
+  const [fileName, setFileName] = useState("No File selected");
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (file) {
@@ -26,15 +27,15 @@ const FileUpload = ({ contract, account, provider }) => {
         const signer = contract.connect(provider.getSigner());
         signer.add(account, ImgHash);
       } catch (e) {
-        alert("Unable to upload image to Pinata");
+        alert("Unable to upload File to Pinata");
       }
     }
-    alert("Successfully Image Uploaded");
-    setFileName("No image selected");
+    alert("Successfully File Uploaded");
+    setFileName("No File selected");
     setFile(null);
   };
   const retrieveFile = (e) => {
-    const data = e.target.files[0]; //files array of files object
+    const data = e.target.files[0]; 
     
     const reader = new window.FileReader();
     reader.readAsArrayBuffer(data);
@@ -48,7 +49,7 @@ const FileUpload = ({ contract, account, provider }) => {
     <div className="top">
       <form className="form" onSubmit={handleSubmit}>
         <label htmlFor="file-upload" className="choose">
-          Choose Image
+          Choose File
         </label>
         <input
           disabled={!account}
@@ -57,9 +58,9 @@ const FileUpload = ({ contract, account, provider }) => {
           name="data"
           onChange={retrieveFile}
         />
-        <span className="textArea">Image: {fileName}</span>
+        <span className="textArea">File: {fileName}</span>
         <button type="submit" className="upload" disabled={!file}>
-          Upload File
+          Upload
         </button>
       </form>
     </div>
