@@ -19,7 +19,7 @@
   background-color: initial;
   background-image: linear-gradient(-180deg, #009ffd, #2a2a72);
   border-radius: 6px;
-  color: #ffffff;
+  color: rgb(236, 226, 226);
   padding: 5px 10px;
   border: none;
   font-size: 16px;
@@ -28,7 +28,7 @@
   padding-bottom: 10px;
 }
 .button:hover {
-  box-shadow: rgba(253, 76, 0, 0.5) 0 3px 8px;
+  box-shadow: rgba(33, 31, 31, 0.5) 0 3px 8px;
 }
 .address {
   display: block;
@@ -39,5 +39,5 @@
 }
 
 input[type="text"]:focus {
-  background-color: lightblue;
+  background-color: rgb(30, 189, 241);
 }

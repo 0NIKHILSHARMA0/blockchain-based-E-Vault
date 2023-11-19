@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import FileUpload from "./components/FileUpload";
 import Display from "./components/Display";
 import Modal from "./components/Modal";
+import Web3Modal from "web3modal";
 import "./App.css";
 
 const ethers = require("ethers");
@@ -17,18 +18,16 @@ function App() {
     const loadProvider = async () => {
       if (window.ethereum) {
         try {
+          const web3modal = new Web3Modal();
+          const connection = await web3modal.connect();
           const provider = new ethers.providers.Web3Provider(window.ethereum);
           const signer = provider.getSigner();
           const address = await signer.getAddress();
           setAccount(address);
-          const contractAddress = "0x998333ed612A1135411C7e982a5d425327Ef2c55";
 
-          const contract = new ethers.Contract(
-            contractAddress,
-            Upload.abi,
-            signer
-          );
+          const contractAddress = '0xEb176C98F7df9d3D801f371264707ab3eA3609Ed';
 
+          const contract = new ethers.Contract(contractAddress, Upload.abi, signer);
           setContract(contract);
           setProvider(provider);
         } catch (error) {
@@ -42,15 +41,30 @@ function App() {
     if (!provider) {
       loadProvider();
     }
-
-    window.ethereum.on("chainChanged", () => {
-      window.location.reload();
-    });
-
-    window.ethereum.on("accountsChanged", () => {
-      window.location.reload();
-    });
   }, [provider]);
+
+
+  console.log(provider);
+
+  useEffect(() => {
+    const handleChainChange = () => {
+      window.location.reload();
+    };
+
+    const handleAccountsChange = () => {
+      window.location.reload();
+    };
+
+    if (window.ethereum) {
+      window.ethereum.on("chainChanged", handleChainChange);
+      window.ethereum.on("accountsChanged", handleAccountsChange);
+
+      return () => {
+        window.ethereum.removeListener("chainChanged", handleChainChange);
+        window.ethereum.removeListener("accountsChanged", handleAccountsChange);
+      };
+    }
+  }, []);
 
   return (
     <>
@@ -64,7 +78,7 @@ function App() {
       )}
 
       <div className="App">
-        <h1 style={{ color: "black" }}>Smooth as Buffer</h1>
+        <h1 style={{ color: "black" }}>Innovators World</h1>
         <div className="bg"></div>
         <div className="bg bg2"></div>
         <div className="bg bg3"></div>

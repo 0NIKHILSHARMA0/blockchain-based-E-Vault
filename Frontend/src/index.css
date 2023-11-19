@@ -5,9 +5,18 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #050404; /* Dark background color */
+  color: #ffffff; /* Light text color */
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Additional styling for better readability */
+.container {
+  background-color: #262626; /* Darker container background color */
+}
+
+/* Add more specific styles for other elements if needed */
